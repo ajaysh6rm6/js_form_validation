@@ -1,0 +1,44 @@
+$(function () {
+  'use strict'; 
+
+  var pageLoginForm = $('.auth-login-form');
+  // jQuery Validation
+  if (pageLoginForm.length) {
+    pageLoginForm.validate({
+      /*
+      * ? To enable validation onkeyup
+      onkeyup: function (element) {
+        $(element).valid();
+      },*/
+      /*
+      * ? To enable validation on focusout
+      onfocusout: function (element) {
+        $(element).valid();
+      }, */
+      rules: {
+        'username': {
+          required: true,
+        },
+        'password': {
+          required: true,
+          regex: /^[0-9]+$/
+        }
+      },
+      messages: {
+        username: {
+              required: "Please provide username",
+          },
+          password: {
+            required: "Please provide password",
+            regex: "Provide a valid input for password"
+        }
+      }
+    });
+  }
+
+  //FOR REGEX VALIDATION    
+  $.validator.addMethod("regex", function(value, element, regexpr) {          
+    return regexpr.test(value);
+},);
+
+});
